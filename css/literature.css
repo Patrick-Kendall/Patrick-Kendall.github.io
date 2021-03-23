@@ -51,7 +51,7 @@ a {
 
 /* review formatting */
 
-.review {
+.review, .minor-review {
   padding: 40px;
   background-color: white;
   border-left: solid black 1px;
@@ -64,17 +64,19 @@ a {
   margin: 0;
 }
 
-.review h3 {
+.author {
   margin: 0;
   font-style: italic;
   margin-left: 10px;
 }
 
-.review .first {
+.first {
   margin-top: 25px;
+  margin-top:10px;
+  margin-bottom: 0;
 }
 
-.review h4 {
+.review h4, .minor-review h4 {
   margin-top:10px;
   margin-bottom: 0;
 }
@@ -93,8 +95,9 @@ a {
 }
 
 .quotation {
-  padding: 25px;
-  padding-top: 0;
+  padding: 30px;
+  padding-top: 5px;
+  padding-bottom: 10px;
   margin:0;
   font-style: italic;
 }
