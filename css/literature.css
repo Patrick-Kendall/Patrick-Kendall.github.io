@@ -79,7 +79,15 @@ a {
   margin-bottom: 0;
 }
 
-.review p {
+.paragraph {
   margin: 0;
   padding: 10px;
+  padding-top: 0;
+  padding-bottom: 5px;
+}
+
+.first-paragraph {
+  margin:0;
+  padding:10px;
+  padding-bottom: 5px;
 }
