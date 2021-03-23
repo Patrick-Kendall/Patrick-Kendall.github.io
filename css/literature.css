@@ -91,3 +91,10 @@ a {
   padding:10px;
   padding-bottom: 5px;
 }
+
+.quotation {
+  padding: 25px;
+  padding-top: 0;
+  margin:0;
+  font-style: italic;
+}
