@@ -1,6 +1,16 @@
+/* general formatting */
+
 body {
   background-color: white;
 }
+
+a {
+  text-decoration: underline;
+  color: #000;
+  /* font-family: Courier New; */
+}
+
+/* table of contents formatting  */
 
 .TOC {
   padding: 10px;
@@ -10,25 +20,30 @@ body {
   background-color: white;
 }
 
-.TOC h2 {
+.TOC-heading {
   text-align: center;
   font-family: Courier New;
   font-weight: 500;
   font-size: 18pt;
 }
 
-.TOC p {
+.TOC-title {
   margin-top: 40px;
   margin-left: 40px;
   margin-bottom: 0;
   font-size: 14pt;
 }
 
-.TOC ul {
+.TOC-list {
   list-style-type: lower-alpha;
   margin-left: 40px;
   margin-top: 5px;;
   margin-bottom: 0;
+}
+
+.TOC-item {
+  margin-bottom: 4px;
+  font-size: 14pt;
 }
 
 .TOC span {
@@ -38,16 +53,6 @@ body {
   font-size: 14pt;
 }
 
-.TOC li {
-  margin-bottom: 4px;
-  font-size: 14pt;
-}
-
-a {
-  text-decoration: underline;
-  color: #000;
-  /* font-family: Courier New; */
-}
 
 /* review formatting */
 
@@ -59,7 +64,7 @@ a {
   margin-bottom: 70px;
 }
 
-.review h1 {
+.review h1, .minor-review h1 {
   padding: 0;
   margin: 0;
 }
