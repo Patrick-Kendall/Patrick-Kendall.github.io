@@ -2,6 +2,13 @@
   padding: 20px;
 }
 
+.showcase {
+  position: static;
+  margin:0;
+  max-height: 82vh;
+  overflow: hidden;
+}
+
 .showcase-video {
   width:100%;
 }
