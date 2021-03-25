@@ -77,7 +77,7 @@ img {
   font-size: 16px;
   border:none;
   cursor: pointer;
-  display: inline-block;
+  /* display: inline-block; */
 }
 
 /* dropdown content hidden by default */
@@ -128,8 +128,7 @@ img {
 
 /* collapsing main nav sections for small screens */
   .main-nav a:not(:first-child) {
-      display: none;
-      font-size: 10pt;
+      /* font-size: 10pt; */
   }
 
 /* displaying the bars icon signifying a collapsable menu */
