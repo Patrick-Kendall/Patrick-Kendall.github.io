@@ -9,6 +9,7 @@ a {
 
 .TOC {
   padding: 10px;
+  padding-left:50px;
   padding-top: 25px;
   height: 500px;
   display: block;
@@ -29,14 +30,14 @@ a {
 
 .TOC-title {
   margin-top: 40px;
-  margin-left: 40px;
+  /* margin-left: 40px; */
   margin-bottom: 0;
   font-size: 14pt;
 }
 
 .TOC-list {
   list-style-type: lower-alpha;
-  margin-left: 40px;
+  /* margin-left: 40px; */
   margin-top: 5px;;
   margin-bottom: 0;
 }
@@ -48,7 +49,7 @@ a {
 
 .TOC span {
   margin-top: 0px;
-  margin-left: 40px;
+  /* margin-left: 40px; */
   margin-bottom: 0;
   font-size: 14pt;
 }
@@ -117,4 +118,23 @@ a {
 
 .myTake-link {
   background-color: yellow;
+}
+
+
+@media(max-width:450px) {
+  .review, .minor-review {
+    margin-left: 0;
+    margin-right:0;
+    padding-right:15px;
+    padding-left:25px;
+  }
+
+  .TOC {
+    padding-left:20px;
+    margin-left:0;
+    margin-right:0;
+    height:auto;
+    padding-bottom: 100px;
+  }
+
 }
