@@ -19,7 +19,7 @@ function hideIncomplete(){
 
     // accessing style information about incomplete review
     height = incomplete[i].clientHeight;
-    width = incomplete[i].clientWidth*0.99;
+    width = incomplete[i].clientWidth;
     // position = incomplete[i].offsetTop + 70;
     // windowWidth = window.innerWidth;
     // this algorithm is found from guess and check; may not be perfect

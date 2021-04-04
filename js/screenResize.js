@@ -25,8 +25,8 @@ function coverResize(){
     // getting dynamic styling of review
     // position = incomplete[i].offsetTop;
     height = incomplete[i].clientHeight;
-    width = incomplete[i].clientWidth*0.99;
-    windowWidth = window.innerWidth;
+    width = incomplete[i].clientWidth;
+    // windowWidth = window.innerWidth;
     // this algorithm is found from guess and check; may not be perfect
     // algorithm only works for elements centered horizontally in window width
     // left = incomplete[i].offsetLeft;
