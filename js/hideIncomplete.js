@@ -20,16 +20,16 @@ function hideIncomplete(){
     // accessing style information about incomplete review
     height = incomplete[i].clientHeight;
     width = incomplete[i].clientWidth*0.99;
-    position = incomplete[i].offsetTop + 70;
-    windowWidth = window.innerWidth;
+    // position = incomplete[i].offsetTop + 70;
+    // windowWidth = window.innerWidth;
     // this algorithm is found from guess and check; may not be perfect
-    left = 100*(1-(width/windowWidth)*1.01)/2;
-    left = left.toFixed(4);
+    // left = 100*(1-(width/windowWidth)*1.01)/2;
+    // left = left.toFixed(4);
 
     //creating new div with those styles
     let newDiv = document.createElement("div");
-    newDiv.style.top = position + 'px';
-    newDiv.style.left = left + '%';
+    // newDiv.style.top = position + 'px';
+    // newDiv.style.left = left + '%';
     newDiv.style.width = width + 'px';
     newDiv.style.height = height + 'px';
     newDiv.className = "covering";
@@ -37,7 +37,7 @@ function hideIncomplete(){
     // inserting element before null which works for unknown reason
     // const container = document.querySelector('.container');
     // const toc = document.querySelector('.TOC');
-    document.body.insertBefore(newDiv, null);
+    incomplete[i].insertBefore(newDiv, null);
   }
 }
 

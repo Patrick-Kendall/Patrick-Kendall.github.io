@@ -189,7 +189,8 @@ a {
   /* background-color: rgba(0,0,0,0.61); */
   z-index: 0.98;
   opacity: 0.95;
-  left: 27.6%;
+  top:0;
+  left:0;
   padding-top:0;
   margin:0;
   backdrop-filter: blur(80px);

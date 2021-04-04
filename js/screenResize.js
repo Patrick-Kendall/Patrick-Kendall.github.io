@@ -23,18 +23,18 @@ function coverResize(){
 
   for(let i=0; i<iterations;i++){
     // getting dynamic styling of review
-    position = incomplete[i].offsetTop;
+    // position = incomplete[i].offsetTop;
     height = incomplete[i].clientHeight;
     width = incomplete[i].clientWidth*0.99;
     windowWidth = window.innerWidth;
     // this algorithm is found from guess and check; may not be perfect
     // algorithm only works for elements centered horizontally in window width
-    left = 100*(1-(width/windowWidth)*1.01)/2;
-    left = left.toFixed(4);
+    // left = incomplete[i].offsetLeft;
+    // left = left.toFixed(4);
 
     //setting styling of over div
-    covers[i].style.top = position + "px";
-    covers[i].style.left = left + "%";
+    // covers[i].style.top = position + "px";
+    // covers[i].style.left = left + "%";
     covers[i].style.width = width + "px";
     covers[i].style.height = height + "px";
   }
