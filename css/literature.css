@@ -9,6 +9,7 @@ a {
   padding-right: 30px;
 }
 
+/*  on-page anchors */
 .anch {
   position: absolute;
   top:-40px;
@@ -19,7 +20,9 @@ a {
   top:-60px;
 }
 
-/* table of contents formatting  */
+/* ================================ */
+  /* TABLE OF CONTENTS FORMATTING */
+/* ================================ */
 
 .TOC {
   padding: 10px;
@@ -45,14 +48,12 @@ a {
 
 .TOC-title {
   margin-top: 40px;
-  /* margin-left: 40px; */
   margin-bottom: 0;
   font-size: 14pt;
 }
 
 .TOC-list {
   list-style-type: lower-alpha;
-  /* margin-left: 40px; */
   margin-top: 5px;;
   margin-bottom: 0;
 }
@@ -64,13 +65,13 @@ a {
 
 .TOC span {
   margin-top: 0px;
-  /* margin-left: 40px; */
   margin-bottom: 0;
   font-size: 14pt;
 }
 
-
-/* review formatting */
+/* ================================ */
+  /* review FORMATTING */
+/* ================================ */
 
 .review, .minor-review {
   position: relative;
@@ -119,6 +120,28 @@ a {
   display:flex;
 }
 
+.premise-num {
+  padding: 0;
+  padding-right: 8px;
+  margin: 0;
+}
+
+.premise-text {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.premise-quotation {
+  padding: 48px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin:0;
+  margin-top: -8px;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
 .quotation {
   padding: 30px;
   padding-top: 5px;
@@ -138,18 +161,6 @@ a {
   float:right;
 }
 
-.premise-num {
-  padding: 0;
-  padding-right: 8px;
-  margin: 0;
-}
-
-.premise-text {
-  padding: 0;
-  margin: 0;
-  margin-bottom: 10px;
-}
-
 .discussion-text {
   padding: 0;
   margin:0;
@@ -162,18 +173,12 @@ a {
   margin: 0;
 }
 
+/* identifier class for a js program */
 .incomplete {
   max-height: 500px;
   overflow-y: hidden;
 }
 
-.incomplete-label {
-  font-size: 2.4em;
-  transform: rotate(348deg) translateX(-30px) translateY(30px);
-  font-family: Arial;
-  color: #A20;
-  text-shadow: 2px 2px 5px 0 black;
-}
 /* class used in conjunction with javascript to hide elements */
 .covering {
   position:absolute;
@@ -190,6 +195,22 @@ a {
   backdrop-filter: blur(80px);
   -webkit-backdrop-filter: blur(80px);
 }
+
+/* text inside covering */
+.incomplete-label {
+  font-size: 2.4em;
+  transform: rotate(348deg) translateX(-30px) translateY(30px);
+  font-family: Arial;
+  color: #A20;
+  text-shadow: 2px 2px 5px 0 black;
+}
+
+
+/* ================================ */
+  /* MEDIA QUERIES */
+/* ================================ */
+
+
 
 @media(max-width:450px) {
   .review, .minor-review {
