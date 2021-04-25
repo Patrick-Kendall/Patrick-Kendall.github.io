@@ -149,28 +149,9 @@ img {
   }
 
 /* displaying the bars icon signifying a collapsable menu */
-.main-nav .icon {
-  display: block;
-  height: 30px;
-  overflow:hidden;
-  font-size: 10pt;
-}
-
-.main-nav.responsive {
-  position: relative;
-}
-
-/* mechanism to allow expansion of menu using JS */
-.main-nav.responsive a {
-  display: block;
-  float: none;
-  text-align: left;
-}
-
-.main-nav.responsive a.icon {
-  position: absolute;
-  right: 0;
-  top: 0;
+.nav-link {
+  padding: 10px 10px;
+  font-size: 14px;
 }
 
 }
