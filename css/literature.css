@@ -83,13 +83,22 @@ a {
   box-shadow: -3px 0px 10px 0px #1c1c1c, 3px 0px 10px 0px #1c1c1c;
 }
 
+.review-header {
+  display: flex;
+  padding: 0;
+  margin: 0px;
+  margin-bottom: -10px;
+  justify-content: space-between;
+}
+
 .review h1, .minor-review h1 {
   padding: 0;
   margin: 0;
+  line-height: 1.5rem;
 }
 
 .author {
-  margin: 0;
+  margin: 7px 10px;
   font-style: italic;
   margin-left: 10px;
 }
@@ -107,9 +116,7 @@ a {
 
 .paragraph {
   margin: 0;
-  padding: 10px;
-  padding-top: 0;
-  padding-bottom: 5px;
+  padding: 5px 10px;
   display: flex;
 }
 
@@ -143,7 +150,7 @@ a {
 }
 
 .quotation {
-  padding: 30px;
+  padding: 35px;
   padding-top: 5px;
   padding-bottom: 10px;
   margin:0;
@@ -157,8 +164,11 @@ a {
 }
 
 .myTake-link {
+  float: right;
   background-color: yellow;
-  float:right;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-family: serif;
 }
 
 .discussion-text {
@@ -217,8 +227,13 @@ a {
   .review, .minor-review {
     margin-left: 0;
     margin-right:0;
-    padding-right:15px;
-    padding-left:25px;
+    padding: 0;
+    padding-top: 40px;
+    padding-bottom: 160px;
+  }
+
+  .review h4, .minor-review h4 {
+    padding-left: 10px;
   }
 
   .TOC {
