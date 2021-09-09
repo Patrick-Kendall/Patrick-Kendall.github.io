@@ -43,15 +43,13 @@
 }
 
 .feature-header {
-  padding: 30px;
+  padding: 15px;
   padding-top: 0;
-  padding-bottom: 15px;
   font-family: sans-serif;
 }
 
 .feature-title {
   color: white;
-  padding-left: 10px;
   font-size: 1.8rem;
   padding-bottom: 0;
 }
