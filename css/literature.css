@@ -75,7 +75,7 @@ a {
 
 .review, .minor-review {
   position: relative;
-  padding: 40px;
+  padding: 30px;
   padding-bottom: 160px;
   background-color: white;
   margin: 20px;
@@ -84,7 +84,8 @@ a {
 }
 
 .review-header {
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
   padding: 0;
   margin: 0px;
   margin-bottom: -10px;
@@ -94,11 +95,12 @@ a {
 .review h1, .minor-review h1 {
   padding: 0;
   margin: 0;
+  font-size: 1.6rem;
   line-height: 1.5rem;
 }
 
 .author {
-  margin: 7px 10px;
+  margin-top: -10px;
   font-style: italic;
   margin-left: 10px;
 }
@@ -122,6 +124,7 @@ a {
 
 .first-paragraph {
   margin:0;
+  margin-bottom: 20px;
   padding:10px;
   padding-bottom: 5px;
   display:flex;
@@ -157,10 +160,10 @@ a {
   font-style: italic;
 }
 
-.myTake {
-  background-color:yellow;
-  padding:5px;
+.myTake-header {
   position: relative;
+  justify-content: center;
+  background-color: yellow;
 }
 
 .myTake-link {
@@ -216,6 +219,107 @@ a {
   text-shadow: 2px 2px 5px 0 black;
 }
 
+/* table for influence ----------------------------------- PK 01JUL21 */
+table {
+  /* width: 100%; */
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  border-collapse: collapse;
+}
+
+th {
+    background-color: gray;
+    border: 1px solid black;
+}
+
+td {
+  background-color: white;
+  border: 1px solid black;
+}
+
+.influence-heading {
+
+  height: 50px;
+  width: 140px;
+
+}
+
+.influence-text {
+
+  width: 330px;
+  text-align: center;
+
+}
+
+.aboutAuthor {
+  /* margin-top: 10px; */
+  /* border: 1px solid black; */
+  padding: 8px;
+  margin-top: 17px;
+  margin-bottom: 17px;
+}
+.briefestSummary {
+  padding: 8px;
+  /* margin-bottom: 80px; */
+}
+.majorPoints-header {
+  /* margin-bottom: 40px; */
+  justify-content: center;
+  padding-left: 20px;
+  border-radius: 4px;
+  margin-bottom: 25px;
+}
+
+.majorPoints {
+  margin-bottom: 40px;
+}
+
+
+.additionalPoints {
+  margin-bottom: 40px;
+}
+
+.myTake {
+  margin-bottom: 80px;
+}
+
+
+.review-author {
+  height: 30px;
+}
+
+.review-rating {
+  /* height: 20px; */
+  margin: -30px;
+  background-color: white;
+  padding: 12px;
+  padding-left: 50px;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.summary-heading {
+  font-weight: bold;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  height: 35px;
+}
+
+.summary-text {
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  height: 60px;
+}
+
+.premise {
+  display: flex;
+  padding-left: 8px;
+}
+
 
 /* ================================ */
   /* MEDIA QUERIES */
@@ -234,6 +338,23 @@ a {
 
   .review h4, .minor-review h4 {
     padding-left: 10px;
+  }
+
+  .aboutAuthor {
+    /* margin-top: 10px; */
+    /* border: 1px solid black; */
+    margin-bottom: 25px;
+    padding: 0;
+  }
+
+  .briefestSummary {
+    padding: 0px;
+    margin-bottom: 80px;
+  }
+
+  .review-rating {
+    margin: -40px;
+    margin-bottom: 25px;
   }
 
   .TOC {

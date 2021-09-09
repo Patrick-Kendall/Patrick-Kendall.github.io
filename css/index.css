@@ -42,6 +42,21 @@
   color: white;
 }
 
+.feature-header {
+  padding: 30px;
+  padding-top: 0;
+  padding-bottom: 15px;
+  font-family: sans-serif;
+}
+
+.feature-title {
+  color: white;
+  padding-left: 10px;
+  font-size: 1.8rem;
+  padding-bottom: 0;
+}
+
+
 /* =================================== */
 /*  MEDIA QUERIES  */
 /* =================================== */
@@ -60,6 +75,7 @@
     font-size: 2.3vh;
     bottom: 9.2vh;
   }
+
 }
 
 @media (max-width:400px) {
@@ -74,4 +90,5 @@
     left:0;
     font-size: 2.2vh;
   }
+
 }
