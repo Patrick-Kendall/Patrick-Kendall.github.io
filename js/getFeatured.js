@@ -11,7 +11,6 @@ function loadFeatured() {
    lit.onload = function(){
      if(this.status == 200){
        const page = this.response;
-       console.log(page);
 
        document.querySelector('.review').innerHTML = page.querySelector('.featured').innerHTML;
      }
