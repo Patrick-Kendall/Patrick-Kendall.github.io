@@ -16,7 +16,7 @@ body {
   z-index:0.9;
   position:relative;
   max-width: 710px;
-  }
+}
 
 p {
   font-size: 1.0em;
@@ -155,4 +155,15 @@ img {
   font-size: 14px;
 }
 
+}
+
+
+.tool-container {
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  max-width: 900px;
+
+  border: 5px inset #999978;
 }
