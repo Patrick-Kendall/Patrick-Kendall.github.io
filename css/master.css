@@ -163,7 +163,7 @@ img {
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  max-width: 900px;
+  max-width: 900px !important; 
 
   border: 5px inset #999978;
 }
