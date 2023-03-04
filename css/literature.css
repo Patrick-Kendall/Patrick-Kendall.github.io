@@ -1,7 +1,6 @@
 /* general formatting */
 
 a {
-  text-decoration: underline;
   color: #000;
 }
 
@@ -12,27 +11,27 @@ a {
 /*  on-page anchors */
 .anch {
   position: absolute;
-  top:-40px;
+  top: -40px;
 }
 
 .take-anch {
   position: absolute;
-  top:-60px;
+  top: -60px;
 }
 
 /* ================================ */
-  /* TABLE OF CONTENTS FORMATTING */
+/* TABLE OF CONTENTS FORMATTING */
 /* ================================ */
 
 .TOC {
   padding: 10px;
-  padding-left:50px;
+  padding-left: 50px;
   padding-top: 25px;
   height: 500px;
   display: block;
   z-index: 0.95;
   margin: 20px;
-  margin-top:10px;
+  margin-top: 10px;
   /* margin-bottom: 0; */
   background-color: white;
   box-shadow: -3px 0px 10px 0px #1c1c1c, 3px 0px 10px 0px #1c1c1c;
@@ -54,7 +53,7 @@ a {
 
 .TOC-list {
   list-style-type: lower-alpha;
-  margin-top: 5px;;
+  margin-top: 5px;
   margin-bottom: 0;
 }
 
@@ -70,10 +69,11 @@ a {
 }
 
 /* ================================ */
-  /* review FORMATTING */
+/* review FORMATTING */
 /* ================================ */
 
-.review, .minor-review {
+.review,
+.minor-review {
   position: relative;
   padding: 30px;
   padding-bottom: 160px;
@@ -88,15 +88,17 @@ a {
   grid-template-columns: 3fr 1fr;
   padding: 0;
   margin: 0px;
-  margin-bottom: -10px;
   justify-content: space-between;
 }
 
-.review h1, .minor-review h1 {
+.review h1,
+.minor-review h1 {
   padding: 0;
   margin: 0;
   font-size: 1.6rem;
   line-height: 1.5rem;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .author {
@@ -107,12 +109,13 @@ a {
 
 .first {
   margin-top: 25px;
-  margin-top:10px;
+  margin-top: 10px;
   margin-bottom: 0;
 }
 
-.review h4, .minor-review h4 {
-  margin-top:10px;
+.review h4,
+.minor-review h4 {
+  margin-top: 10px;
   margin-bottom: 0;
 }
 
@@ -123,11 +126,11 @@ a {
 }
 
 .first-paragraph {
-  margin:0;
+  margin: 0;
   margin-bottom: 20px;
-  padding:10px;
+  padding: 10px;
   padding-bottom: 5px;
-  display:flex;
+  display: flex;
 }
 
 .premise-num {
@@ -146,7 +149,7 @@ a {
   padding: 48px;
   padding-top: 0px;
   padding-bottom: 0px;
-  margin:0;
+  margin: 0;
   margin-top: -8px;
   margin-bottom: 10px;
   font-style: italic;
@@ -156,7 +159,7 @@ a {
   padding: 35px;
   padding-top: 5px;
   padding-bottom: 10px;
-  margin:0;
+  margin: 0;
   font-style: italic;
 }
 
@@ -171,17 +174,22 @@ a {
   background-color: yellow;
   padding: 10px 15px;
   border-radius: 5px;
-  font-family: serif;
+  text-align: center;
+  box-shadow: 1px 1px 2px black;
+}
+
+.myTake-link a {
+  text-decoration: none;
 }
 
 .discussion-text {
   padding: 0;
-  margin:0;
+  margin: 0;
 }
 
 .inline-heading {
   padding: 0;
-  font-weight:bold;
+  font-weight: bold;
   padding-right: 8px;
   margin: 0;
 }
@@ -194,7 +202,7 @@ a {
 
 /* class used in conjunction with javascript to hide elements */
 .covering {
-  position:absolute;
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -202,10 +210,10 @@ a {
   /* background-color: rgba(0,0,0,0.61); */
   z-index: 0.98;
   opacity: 0.95;
-  top:0;
-  left:0;
-  padding-top:0;
-  margin:0;
+  top: 0;
+  left: 0;
+  padding-top: 0;
+  margin: 0;
   backdrop-filter: blur(80px);
   -webkit-backdrop-filter: blur(80px);
 }
@@ -215,7 +223,7 @@ a {
   font-size: 2.4em;
   transform: rotate(348deg) translateX(-30px) translateY(30px);
   font-family: Arial;
-  color: #A20;
+  color: #a20;
   text-shadow: 2px 2px 5px 0 black;
 }
 
@@ -230,8 +238,8 @@ table {
 }
 
 th {
-    background-color: gray;
-    border: 1px solid black;
+  background-color: gray;
+  border: 1px solid black;
 }
 
 td {
@@ -240,17 +248,13 @@ td {
 }
 
 .influence-heading {
-
   height: 50px;
   width: 140px;
-
 }
 
 .influence-text {
-
   width: 330px;
   text-align: center;
-
 }
 
 .aboutAuthor {
@@ -276,7 +280,6 @@ td {
   margin-bottom: 40px;
 }
 
-
 .additionalPoints {
   margin-bottom: 40px;
 }
@@ -285,19 +288,21 @@ td {
   margin-bottom: 80px;
 }
 
-
 .review-author {
   height: 30px;
 }
 
 .review-rating {
   /* height: 20px; */
-  margin: -30px;
-  background-color: white;
+  color: blanchedalmond;
   padding: 12px;
-  padding-left: 50px;
-  justify-content: center;
-  margin-bottom: 25px;
+  margin: 18px -5px;
+  padding-left: 20px;
+  text-shadow: 1px 1px 2px black;
+  opacity: 82%;
+  border-radius: 10px;
+  min-width: 85%;
+  font-weight: 600;
 }
 
 .summary-heading {
@@ -320,23 +325,22 @@ td {
   padding-left: 8px;
 }
 
-
 /* ================================ */
-  /* MEDIA QUERIES */
+/* MEDIA QUERIES */
 /* ================================ */
 
-
-
-@media(max-width:450px) {
-  .review, .minor-review {
+@media (max-width: 450px) {
+  .review,
+  .minor-review {
     margin-left: 0;
-    margin-right:0;
+    margin-right: 0;
     padding: 0;
     padding-top: 40px;
     padding-bottom: 160px;
   }
 
-  .review h4, .minor-review h4 {
+  .review h4,
+  .minor-review h4 {
     padding-left: 10px;
   }
 
@@ -353,16 +357,14 @@ td {
   }
 
   .review-rating {
-    margin: -40px;
-    margin-bottom: 25px;
+    border-radius: 5px;
   }
 
   .TOC {
-    padding-left:20px;
-    margin-left:0;
-    margin-right:0;
-    height:auto;
+    padding-left: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    height: auto;
     padding-bottom: 100px;
   }
-
 }
