@@ -401,6 +401,19 @@ td {
     padding-left: 10px;
   }
 
+  .review-rating {
+    /* height: 20px; */
+    color: white;
+    padding: 12px;
+    margin: 18px 0px;
+    padding-left: 20px;
+    text-shadow: 1px 1px 2px black;
+    opacity: 82%;
+    border-radius: 10px;
+    min-width: 85%;
+    font-weight: 600;
+  }
+
   .aboutAuthor {
     /* margin-top: 10px; */
     /* border: 1px solid black; */
