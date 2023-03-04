@@ -1,6 +1,10 @@
 class UI {
   constructor(appState) {
     this.nutrient_tab = document.getElementById("nutrient-tab");
+    this.compare_tab = document.getElementById("compare-tab");
+    this.pieQueue = document.getElementById("pie-Q");
+    this.titleQueue = document.getElementById("title-Q");
+    this.removeQueue = document.getElementById("remove-Q");
     this.related = document.getElementById("related");
     this.profile = document.getElementById("profile");
     this.appState = appState;
@@ -8,168 +12,72 @@ class UI {
 
   // establish event listener on search input
   createSearchUser() {
-    
-// getting user input from webpage
-const searchUser = document.getElementById('searchUser');
+    // getting user input from webpage
+    const searchUser = document.getElementById("searchUser");
 
-  searchUser.addEventListener('keypress', (e) => {
-  // Get input text
-  let userText = e.target.value;
+    searchUser.addEventListener("keypress", (e) => {
+      // Get input text
+      const userText = e.target.value;
 
-  // check state
-  const appState = state.getState();
+      const key = e.code;
 
-
-  const key = e.code;
-
-  if (key == 'Enter') {
-    switch(appState) {
-      case 0:
-        if (userText !== ''){
-          api.searchSurvey(userText)
-          .then(surveyData =>
-            {
-              data.clear();
-              data.processNutrition(surveyData.response);
-              ui.showNutrition();
-              data.processRelatedBrands(surveyData.response);
-              ui.showRelatedSearches();
-            })
-        }
-        break;
-      case 1:
-        if(userText !== '') {
-          // 
-          api.searchBrand(userText)
-          .then(brandData => {
-            api.searchSurvey(userText)
-            .then(surveyData =>
-              {
-                data.clear();
-                data.processNutrition(brandData.response);
-                ui.showNutrition();
-                data.processRelatedBrands(surveyData.response);
-                ui.showRelatedSearches();
-              })
-          })
-        }
-        break;
-      case 2:
-        api.searchAll(userText)
-        .then(allData =>
-          {
-            data.clear();
-            data.processNutrition(allData.response);
-            ui.showNutrition();
-            data.processRelatedBrands(allData.response);
-            ui.showRelatedSearches();
-          })
-        break;
-      case 3:
-        api.searchFoundational(userText)
-        .then(foundationData =>
-          {
-            data.clear();
-            data.processNutrition(foundationData.response);
-            ui.showNutrition();
-            data.processRelatedBrands(foundationData.response);
-            ui.showRelatedSearches();
-          })
-        break;
-      default:
-        break;
-    }
-  }
-})
+      if (key == "Enter") {
+        dataControl.newSearch(userText);
+      }
+    });
   }
 
   // establish event listener on related search's inner HTML
-  createSimilarSearch() {
+  createRelatedSearch() {
     // enabling link to new, related searches
-    let sim = document.getElementById("related");
-    sim.addEventListener('click',(e) => 
-    {
-      let userText = e.target.innerHTML;
+    let sim = document.querySelectorAll(".related__title");
+    sim.forEach((el) => {
+      el.addEventListener("click", (e) => {
+        let userText = e.target.innerHTML;
 
-      // convert % to URL encoded "%26"
-      userText = userText.split("%").join("%26");
-      userText = userText.split("\"").join("");
+        // convert % to URL encoded "%25"
+        userText = userText.split("%").join("%25");
+        userText = userText.split('"').join("");
 
-      const searchType = this.appState.getState();
+        dataControl.newSearch(userText);
+      });
+    });
+  }
 
+  // event listener for compare
+  createCompare() {
+    const comp = document.querySelectorAll(".compare__btn");
+    comp.forEach((el) => {
+      el.addEventListener("click", async (e) => {
+        compareControl.clear();
+        //const title = e.target.innerHTML;
+        console.log(e.target.getAttribute("id"));
+        await compareControl.addFood(e.target.getAttribute("id"));
 
-      switch(searchType) {
-        case 0:
-          api.searchSurvey(userText)
-          .then(surveyData =>
-            {
-              // change user input text to similar search term
-              let targ = document.getElementById("searchUser");
-              targ.value = surveyData.response.foods[0].description;
-    
-              //update UI
-              data.clear();
-              data.processNutrition(surveyData.response);
-              ui.showNutrition();
-              data.processRelatedBrands(surveyData.response);
-              ui.showRelatedSearches();
-            })
-          break;
-        case 1:
-          api.searchBrand(userText)
-          .then(brandData => {
-            api.searchSurvey(userText)
-            .then(surveyData =>
-              {
-              // change user input text to similar search term
-              let targ = document.getElementById("searchUser");
-              targ.value = brandData.response.foods[0].description;
-    
-              //update UI
-              data.clear();
-              data.processNutrition(brandData.response);
-              ui.showNutrition();
-              data.processRelatedBrands(surveyData.response);
-              ui.showRelatedSearches();
-            })
-          })
-          break;
-        case 2:
-          api.searchAll(userText)
-          .then(allData =>
-            {
-              // change user input text to similar search term
-              let targ = document.getElementById("searchUser");
-              targ.value = allData.response.foods[0].description;
-    
-              //update UI
-              data.clear();
-              data.processNutrition(allData.response);
-              ui.showNutrition();
-              data.processRelatedBrands(allData.response);
-              ui.showRelatedSearches();
-            })
-          break;
-        case 3:
-          api.searchFoundational(userText)
-          .then(foundationData =>
-            {
-              // change user input text to similar search term
-              let targ = document.getElementById("searchUser");
-              targ.value = foundationData.response.foods[0].description;
-    
-              //update UI
-              data.clear();
-              data.processNutrition(foundationData.response);
-              ui.showNutrition();
-              data.processRelatedBrands(foundationData.response);
-              ui.showRelatedSearches();
-            })
-          break;
-        default:
-          break;
-      }
-    })
+        this.showCompare();
+
+        compareControl.updatePieQueue();
+
+        this.createRemoveComp();
+      });
+    });
+  }
+
+  createRemoveComp() {
+    const compItems = document.querySelectorAll(".remove__btn");
+    compItems.forEach((el) => {
+      el.addEventListener("click", async (e) => {
+        let id = e.target.getAttribute("id");
+
+        await compareControl.removeFood(id);
+
+        this.showCompare();
+
+        compareControl.updatePieQueue();
+
+        this.createRemoveComp();
+      });
+    });
   }
 
   // printing to an html div with id "related"
@@ -179,39 +87,42 @@ const searchUser = document.getElementById('searchUser');
     <div class = "relatedList">
     <h4> Related Searches </h4>
     <ul id="related">
-      <a href="#">${data.relatedBrandsList}</a>
+      ${dataControl.relatedBrandsList}
     </ul>
     </div>
     `;
-
-    this.createSimilarSearch();
-
+    this.createRelatedSearch();
+    this.createCompare();
   }
 
   // printing to an html div with id "profile"
-  showProfile() {
-  }
+  showProfile() {}
 
   // printing to an html div with id="nutrient-tab"
   showNutrition() {
-       this.nutrient_tab.innerHTML = `
+    this.nutrient_tab.innerHTML = `
        <div class="nutrient-container">
 
-       <h4 class="nutrient-header" id="nutrient-header"> ${data.foodOne.description} : <span id="serving-value">${state.serving}</span>g Serving<br>
+       <h4 class="nutrient-header" id="nutrient-header"> ${
+         dataControl.appData.cache.all[dataControl.appData.cache.all.length - 1]
+           .description
+       } : <span id="serving-value">${state.serving}</span>g Serving<br>
        </h4>
        <div class="nutrient-row">
          <div class="nutrient-col">
            <table class="nutrient-table">
            <tr>
-              <th class = "nutrient-table-header">Macro: </th>
+              <th class = "nutrient-table-header">Macronutrients: </th>
            </tr>
-           ${data.majorDataTable}
+           ${dataControl.majorDataTable}
            </table>
            <hr class="nutrient-total-line">
            <table class="nutrient-table">
            <tr class = "nutrient-table-row"> 
              <td>calories:</td>
-             <td class="nutrient-table-units"> ${data.nutrients.energy.weight} </td>
+             <td class="nutrient-table-units"> ${
+               dataControl.appData.nutrients.energy.weight
+             } </td>
            </tr>
            </table>
          </div>
@@ -220,7 +131,7 @@ const searchUser = document.getElementById('searchUser');
            <tr>
              <th class = "nutrient-table-header">Minerals: </th>
            </tr>
-           ${data.mineralDataTable}
+           ${dataControl.mineralDataTable}
            </table>
          </div>
          <div class="nutrient-col">
@@ -228,7 +139,7 @@ const searchUser = document.getElementById('searchUser');
              <tr>
                <th class = "nutrient-table-header">Vitamins: </th>
              </tr>
-             ${data.vitaminDataTable}
+             ${dataControl.vitaminDataTable}
            </table>
          </div>
          <div class="nutrient-frame">
@@ -243,7 +154,7 @@ const searchUser = document.getElementById('searchUser');
              <tr>
                <th class = "nutrient-table-header">Fatty Acids: </th>
              </tr>
-             ${data.fatBreakdownTable}
+             ${dataControl.fatBreakdownTable}
            </table>
          </div>
          <div class="nutrient-col nutrient-row-extended invisible">
@@ -251,7 +162,7 @@ const searchUser = document.getElementById('searchUser');
            <tr>
               <th class = "nutrient-table-header">Fatty Acids: </th>
            </tr>
-           ${data.fatBreakdown2Table}
+           ${dataControl.fatBreakdown2Table}
            </table>
          </div>
          <div class="nutrient-col nutrient-row-extended invisible">
@@ -259,7 +170,7 @@ const searchUser = document.getElementById('searchUser');
              <tr>
               <th class = "nutrient-table-header">Amino Acids: </th>
              </tr>
-             ${data.aminoAcidDataTable}
+             ${dataControl.aminoAcidDataTable}
            </table>
          </div>
        </div>
@@ -269,26 +180,94 @@ const searchUser = document.getElementById('searchUser');
      <p class="nutrient-caption nutrient-row-extended invisible">* PUFA 18x3 indicates fatty acid with 18 saturated carbons and 3 unsaturated carbons</p>
  `;
 
- // create control which reveals and hides fatty acid breakdown
- let extend = document.querySelector(".nutrient-frame");
+    // create control which reveals and hides fatty acid breakdown
+    let extend = document.querySelector(".nutrient-frame");
 
- extend.addEventListener("click", function()
- {
-   let items = document.querySelectorAll(".nutrient-row-extended");
+    extend.addEventListener("click", function () {
+      let items = document.querySelectorAll(".nutrient-row-extended");
 
-   if(items[0].classList.contains("invisible")) {
-     for (let i = 0;i<items.length;i++) {
-       items[i].classList.remove("invisible");
-       items[i].classList.add("visible")
-     }
-   } else {
-     for (let i = 0;i<items.length;i++) {
-       items[i].classList.remove("visible");
-       items[i].classList.add("invisible")
-     }
-   }
- })
+      if (items[0].classList.contains("invisible")) {
+        for (let i = 0; i < items.length; i++) {
+          items[i].classList.remove("invisible");
+          items[i].classList.add("visible");
+        }
+      } else {
+        for (let i = 0; i < items.length; i++) {
+          items[i].classList.remove("visible");
+          items[i].classList.add("invisible");
+        }
+      }
+    });
   }
 
-}
+  showPieQueue() {
+    if (compareControl.compareLength == 0) {
+      return;
+    }
 
+    this.pieQueue.innerHTML = `
+
+      ${compareControl.pieQueue}
+
+    `;
+  }
+
+  showTitles() {
+    if (compareControl.compareLength == 0) {
+      return;
+    }
+
+    this.titleQueue.innerHTML = `
+
+      ${compareControl.titlesQueue}
+
+    `;
+  }
+
+  showRemove() {
+    if (compareControl.compareLength == 0) {
+      return;
+    }
+
+    this.removeQueue.innerHTML = `
+    ${compareControl.removeQueue}`;
+  }
+
+  showTable() {
+    if (compareControl.compareLength == 0) {
+      return;
+    }
+
+    this.compare_tab.innerHTML = `
+
+      ${compareControl.compareTable}
+
+    `;
+  }
+
+  showCompare() {
+    this.showTable();
+
+    this.showPieQueue();
+
+    this.showTitles();
+
+    this.showRemove();
+  }
+
+  clearCompare() {
+    this.pieQueue.innerHTML = ``;
+    this.compare_tab.innerHTML = ``;
+    this.titleQueue.innerHTML = ``;
+    this.removeQueue.innerHTML = ``;
+  }
+
+  // change user input text to similar search term
+  showNewUserText() {
+    let targ = document.getElementById("searchUser");
+    targ.value =
+      dataControl.appData.cache.all[
+        dataControl.appData.cache.all.length - 1
+      ].description;
+  }
+}
