@@ -168,6 +168,10 @@ a {
   position: relative;
   justify-content: center;
   background-color: yellow;
+  margin-top: 17px;
+  border-radius: 5px;
+  padding: 8px;
+  margin-bottom: 11px;
 }
 
 .myTake-link {
@@ -264,7 +268,7 @@ td {
   /* border: 1px solid black; */
   padding: 8px;
   margin-top: 17px;
-  margin-bottom: 17px;
+  font-weight: 600;
 }
 .briefestSummary {
   padding: 8px;
@@ -304,6 +308,31 @@ td {
   opacity: 82%;
   border-radius: 10px;
   min-width: 85%;
+  font-weight: 600;
+}
+
+/* Official briefest summary header; other class is used for Hume entry */
+.briefestSummaryHeader {
+  margin-top: 17px;
+  padding: 8px;
+  font-weight: 600;
+}
+
+.briefSummaryHeader {
+  margin-top: 17px;
+  padding: 8px;
+  font-weight: 600;
+}
+
+.majorPointsHeader {
+  margin-top: 17px;
+  padding: 8px;
+  font-weight: 600;
+}
+
+.additionalPointsHeader {
+  margin-top: 17px;
+  padding: 8px;
   font-weight: 600;
 }
 
@@ -374,7 +403,7 @@ td {
   .aboutAuthor {
     /* margin-top: 10px; */
     /* border: 1px solid black; */
-    margin-bottom: 25px;
+    margin-bottom: 6px;
     padding: 0;
   }
 
