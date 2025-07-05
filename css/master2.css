@@ -13,7 +13,8 @@ body {
   padding: 0;
   margin: 0;
   background-color: #3e3c3c;
-  line-height: 1.2rem;
+  line-height: 1.4em;
+  font-size: 15px;
   font-family: Helvetica, sans-serif;
 }
 
@@ -25,16 +26,15 @@ body {
   max-width: 710px;
 }
 
-p {
-  font-size: 1em;
-  font-weight: 500;
-}
-
 img {
   width: 100%;
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+a {
+  color: #000;
 }
 
 /* container formatting for main nav */
@@ -79,8 +79,13 @@ img {
 }
 
 .nav-link:hover,
-.dropdown:hover {
-  background-color: red;
+.dropdown:hover,
+.dropdown-link:hover {
+  background-color: rgb(235, 219, 253);
+}
+
+.back-to-top {
+  padding-right: 30px;
 }
 
 /* styling for only "blog" a link */
@@ -117,10 +122,6 @@ img {
   display: block;
 }
 
-.dropdown-link:hover {
-  background-color: red;
-}
-
 /* enabling sticky header */
 .sticky {
   position: fixed;
@@ -133,34 +134,6 @@ img {
   padding-top: 60px;
 }
 
-/* Figure captions  */
-
-.figure-caption {
-  padding: 20px;
-  background-color: white;
-  margin: 6px;
-  padding-left: 30px;
-  padding-right: 30px;
-  font-size: 0.8em;
-}
-
-/* media queries --------------------------------------------------------------------------*/
-
-/* navigation shrinking */
-
-@media (max-width: 600px) {
-  /* collapsing main nav sections for small screens */
-  .main-nav a:not(:first-child) {
-    /* font-size: 10pt; */
-  }
-
-  /* displaying the bars icon signifying a collapsable menu */
-  .nav-link {
-    padding: 10px 10px;
-    font-size: 14px;
-  }
-}
-
 .tool-container {
   margin-top: 25px;
   margin-left: auto;
@@ -169,4 +142,16 @@ img {
   max-width: 900px !important;
 
   border: 5px inset #999978;
+}
+
+/* media queries --------------------------------------------------------------------------*/
+
+/* navigation shrinking */
+
+@media (max-width: 600px) {
+  /* displaying the bars icon signifying a collapsable menu */
+  .nav-link {
+    padding: 10px 10px;
+    font-size: 14px;
+  }
 }

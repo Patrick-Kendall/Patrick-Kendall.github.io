@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/master2.css" />
+    <link rel="stylesheet" href="css/literature3.css" />
+    <link
+      rel="shortcut icon"
+      href="img/enlargedTurtle2.svg"
+      type="image/x-icon"
+    />
+    <title>Input</title>
+  </head>
+  <body>
+    <nav class="main-nav" id="myTopnav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="javascript:void(0)" class="nav-link">Blog</a>
+          <div class="dropdown-content">
+            <a class="dropdown-link dropbtn" href="russianLit.html"
+              >Russian Literature</a
+            >
+            <a class="dropdown-link dropbtn" href="poly.html"
+              >Political Philosophy</a
+            >
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="tools.html" class="nav-link">Tools</a>
+        </li>
+      </ul>
+      <span class="back-to-top"
+        ><a class="nav-link" href="#">Back to Top</a></span
+      >
+    </nav>
+
+    <style>
+      label {
+        color: white;
+      }
+    </style>
+
+    <form action="/submit-form" method="POST">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" /><br /><br />
+
+      <label for="rating">Rating:</label>
+      <input type="text" id="rating" name="rating" /><br /><br />
+
+      <label for="aboutauthor">About the Author:</label><br />
+      <textarea
+        id="aboutauthor"
+        name="aboutauthor[]"
+        rows="5"
+        cols="50"
+      ></textarea>
+      <button type="button" onclick="addParagraph()">Add Paragraph</button
+      ><br /><br />
+
+      <label for="briefestsummary">Briefest Summary:</label><br />
+      <textarea
+        id="briefestsummary"
+        name="briefestsummary"
+        rows="5"
+        cols="50"
+      ></textarea
+      ><br /><br />
+
+      <label for="majorpoints">Major Points:</label><br />
+      <textarea
+        id="majorpoints"
+        name="majorpoints"
+        rows="5"
+        cols="50"
+      ></textarea
+      ><br /><br />
+
+      <label for="mytake">My Take:</label><br />
+      <textarea id="mytake" name="mytake" rows="5" cols="50"></textarea
+      ><br /><br />
+
+      <input type="submit" value="Submit" />
+    </form>
+
+    <script>
+      function addParagraph() {
+        const aboutAuthorTextarea = document.querySelector("#aboutauthor");
+        aboutAuthorTextarea.value += "\n\n";
+        aboutAuthorTextarea.focus();
+      }
+    </script>
+
+    <!-- =========================================================================-->
+
+    <script src="js/newsticky.js"></script>
+    <script src="js/screenResize.js"></script>
+    <script src="js/hideIncomplete.js"></script>
+  </body>
+</html>

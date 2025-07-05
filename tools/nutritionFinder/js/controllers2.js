@@ -180,109 +180,61 @@ class HTMLController {
 }
 
 class DataController {
-  constructor(appState) {
-    this.appData = new AppData();
+  constructor() {
     this.HTMLControl = new HTMLController();
-    this.brandProfile = new Profile();
-    this.foodOne = {};
-    this.nutrientDat = "";
-    this.relatedBrandsList = "";
-    this.majorDataTable = "";
-    this.mineralDataTable = "";
-    this.vitaminDataTable = "";
-    this.aminoAcidDataTable = "";
-    this.fatBreakdownTable = "";
-    this.fatBreakdown2Table = "";
-    this.appState = appState;
-    this.allData = {};
   }
 
-  // receive data from fetch; store first entry; generate html tables for each grouping of nutrient data
-  processNutrition() {
-    // convert units to SI unit standards
-    this.appData.formatUnits();
+  loadEventListeners() {
+    // getting user input from webpage
+    const searchUser = document.getElementById("searchUser");
 
-    // process nutrient profile and display in html <tr> groupings;
-    this.majorDataTable = this.HTMLControl.genDecodeHTML_tr(
-      this.appData.nutrients.major
-    );
-    //console.log(this.appData.nutrients.major);
-    this.mineralDataTable = this.HTMLControl.genDecodeHTML_tr(
-      this.appData.nutrients.minerals
-    );
-    this.vitaminDataTable = this.HTMLControl.genDecodeHTML_tr(
-      this.appData.nutrients.vitamins
-    );
-
-    // 2nd row of columns
-    this.aminoAcidDataTable = this.HTMLControl.genDecodeHTML_tr(
-      this.appData.nutrients.aminoAcids,
-      7
-    );
-    this.fatBreakdownTable =
-      this.HTMLControl.genDecodeHTML_tr(this.appData.nutrients.fats.sat) +
-      "<tr> </tr>" +
-      this.HTMLControl.genDecodeHTML_tr(this.appData.nutrients.fats.monoUnsat);
-    this.fatBreakdown2Table = this.HTMLControl.genDecodeHTML_tr(
-      this.appData.nutrients.fats.polyUnsat
-    );
+    searchUser.addEventListener("keypress", this.searchSubmit.bind(this));
   }
 
-  // generate list of brands containing one of the identical keywords as the current search
-  processRelatedBrands() {
-    const array = this.extractTitle(
-      this.appData.cache.full[this.appData.cache.full.length - 1].foods
-    );
-
-    const uniqueArray = array.filter(onlyUnique);
-
-    this.relatedBrandsList = this.HTMLControl.genHTML_li(uniqueArray);
+  createClickEventListenerRelated() {
+    // enabling link to new, related searches
+    let sim = document.querySelectorAll(".related__title");
+    sim.forEach((el) => {
+      el.addEventListener("click", this.relatedSubmit.bind(this));
+    });
   }
 
-  // process profile data ( yet to be completed)
-  processProfile() {
-    this.brandProfile.loadAll(
-      this.appData.cache.all[this.appData.cache.all.length - 1]
-    );
+  createClickEventListenerCompare() {
+    const comp = document.querySelectorAll(".compare__btn");
+    comp.forEach((el) => {
+      el.addEventListener(
+        "click",
+        compareControl.compareSearchSubmit.bind(this)
+      );
+    });
+  }
+
+  createClickEventListenerRemove() {
+    const compItems = document.querySelectorAll(".remove__btn");
+    compItems.forEach((el) => {
+      el.addEventListener("click", compareControl.removeFood.bind(this));
+    });
   }
 
   async newSearch(userText) {
-    const appState = state.getState();
+    const appState = appData.getState();
 
     switch (appState) {
       case 0:
-        this.clear();
-        await this.appData.searchSurvey(userText);
+        await appData.searchSurvey(userText);
 
-        this.process();
-        ui.showNewUserText();
         break;
       case 1:
-        this.clear();
-        await this.appData.searchBranded(userText);
-
-        ui.showNewUserText();
-        this.process();
+        await appData.searchBranded(userText);
 
         break;
       case 2:
-        this.clear();
         // fill data, then callback to function to process and display in ui
-        await this.appData.searchAll(userText);
-
-        this.process();
-
-        // change user input text to similar search term
-        ui.showNewUserText();
+        await appData.searchAll(userText);
 
         break;
       case 3:
-        this.clear();
-
-        await this.appData.searchFoundation(userText);
-
-        ui.showNewUserText();
-        this.process();
+        await appData.searchFoundation(userText);
 
         break;
       default:
@@ -290,114 +242,155 @@ class DataController {
     }
   }
 
-  process() {
-    //update UI
-    this.processNutrition();
-    ui.showNutrition();
-    this.processRelatedBrands();
-    ui.showRelatedSearches();
-    this.processProfile();
-  }
+  async searchSubmit(e) {
+    let userText = e.target.value;
 
-  // input foods array, return lowercaseDescription of each entry; removes characters at or after index of first digit
-  extractTitle(data) {
-    let array = [];
+    const key = e.code;
 
-    for (const [nutrientName, nutrient] of Object.entries(data)) {
-      let buffer;
-
-      setTimeout(() => {}, 1000);
-
-      try {
-        buffer = nutrient.lowercaseDescription;
-      } catch (error) {}
-
-      try {
-        buffer = nutrient.description;
-      } catch (error) {}
-
-      array.push(buffer);
+    if (key == "Enter") {
+      this.clear();
+      await this.newSearch(userText);
+    } else {
+      return;
     }
 
-    return array;
+    appData.processNutrition();
+
+    // create array of data needed for showNutrition()
+    const nutritionData = [
+      appData.formattedData,
+      appData.cache.all[appData.cache.all.length - 1].description,
+      appData.nutrients.energy.weight,
+    ];
+
+    ui.showNutrition(nutritionData);
+
+    appData.processRelatedBrands();
+
+    const relatedData = appData.relatedBrandsList;
+
+    ui.showRelatedSearches(relatedData);
+
+    this.createClickEventListenerRelated();
+    this.createClickEventListenerCompare();
+    this.createClickEventListenerRemove();
+  }
+
+  async relatedSubmit(e) {
+    let userText = e.target.innerHTML;
+
+    // convert % to URL encoded "%25"
+    userText = userText.split("%").join("%25");
+    userText = userText.split('"').join("");
+
+    this.clear();
+    await this.newSearch(userText);
+
+    appData.processNutrition();
+
+    // create array of data needed for showNutrition()
+    const nutritionData = [
+      appData.formattedData,
+      appData.cache.all[appData.cache.all.length - 1].description,
+      appData.nutrients.energy.weight,
+    ];
+
+    ui.showNutrition(nutritionData);
+
+    appData.processRelatedBrands();
+
+    const relatedData = appData.relatedBrandsList;
+
+    ui.showRelatedSearches(relatedData);
+
+    this.createClickEventListenerCompare();
+    this.createClickEventListenerRemove();
   }
 
   clear() {
-    this.appData.nutrients.clear();
-    this.foodOne = {};
-    this.nutrientDat = "";
-    this.relatedBrands = "";
-    this.majorData = "";
-    this.mineralData = "";
-    this.vitaminData = "";
-    this.aminoAcidData = "";
-    this.fatBreakdown = "";
-    this.fatBreakdown2 = "";
+    appData.nutrients.clear();
   }
 }
 
 class CompareController {
   constructor() {
-    this.data = new compareData();
-    this.compareLength = 0;
     this.HTMLControl = new HTMLController();
-    this.compareTable = "";
-    this.titlesQueue = "";
-    this.pieQueue = "";
-    this.removeQueue = "";
   }
 
-  async addFood(title) {
-    this.compareLength++;
+  async compareSearchSubmit(e) {
+    this.clear();
 
-    this.data.addTitle(title);
-    await this.newSearch(title);
-    this.data.formatUnits();
+    compareData.addTitle(e.target.getAttribute("id"));
 
-    await sleep(2000);
+    // newSearch adds search response to cache.all[]
+    await compareControl.newSearch(e.target.getAttribute("id"));
+    compareData.formatUnits();
 
-    this.data.addItem(this.data.cache.all[this.data.cache.all.length - 1]);
+    compareData.addItem(
+      compareData.cache.all[compareData.cache.all.length - 1]
+    );
 
-    await this.data.processQueue();
+    compareData.processQueue();
 
-    this.createCompare();
+    compareData.createCompare();
+
+    const compareQueues = [
+      compareData.pieQueue,
+      compareData.titlesQueue,
+      compareData.compareTable,
+      compareData.removeQueue,
+    ];
+
+    ui.showCompare(compareQueues);
+
+    compareData.updatePieQueue();
+
+    this.createClickEventListenerRemove();
   }
 
-  async removeFood(index) {
-    this.compareLength--;
+  async removeFood(e) {
     //console.log(this.compareLength);
 
-    this.data.removeItem(index);
+    compareData.removeItem(e.target.getAttribute("id"));
 
-    this.clear();
     ui.clearCompare();
 
-    await this.data.processQueue();
+    compareData.processQueue();
 
-    this.createCompare();
+    compareData.createCompare();
 
-    ui.showCompare();
+    const compareQueues = [
+      compareData.pieQueue,
+      compareData.titlesQueue,
+      compareData.compareTable,
+      compareData.removeQueue,
+    ];
+
+    ui.showCompare(compareQueues);
+
+    compareData.updatePieQueue();
+
+    this.createClickEventListenerRemove();
   }
 
   async newSearch(userText) {
-    const appState = state.getState();
+    const appState = appData.getState();
 
     switch (appState) {
       case 0:
-        this.data.searchSurvey(userText);
+        await compareData.searchSurvey(userText);
 
         break;
       case 1:
-        this.data.searchBranded(userText);
+        await compareData.searchBranded(userText);
 
         break;
       case 2:
-        // fill data, then callback to function to process and display in ui
-        this.data.searchAll(userText);
+        await compareData.searchAll(userText);
 
         break;
       case 3:
-        this.data.searchFoundation(userText);
+        await compareData.searchFoundation(userText);
 
         break;
       default:
@@ -405,151 +398,7 @@ class CompareController {
     }
   }
 
-  // inputs arrays created in processQueue()
-  createTable() {
-    let result = `<table class="compare__table">`;
-
-    result += this.HTMLControl.genDecodeHTML_row2(
-      "compare",
-      "Protein",
-      this.data.proArray
-    );
-    result += this.HTMLControl.genDecodeHTML_row2(
-      "compare",
-      "Fat",
-      this.data.fatArray
-    );
-    result += this.HTMLControl.genDecodeHTML_row2(
-      "compare",
-      "Carbs",
-      this.data.carbArray
-    );
-    result += this.HTMLControl.genDecodeHTML_row2(
-      "compare",
-      "Water",
-      this.data.waterArray
-    );
-
-    result += `</table>`;
-
-    this.compareTable = result;
-  }
-
-  createCompare() {
-    this.createTable();
-
-    this.createPieQueue();
-
-    this.createTitles();
-
-    this.createRemove();
-  }
-
-  createTitles() {
-    let result = `<table class="title__table">`;
-
-    result += this.HTMLControl.genDecodeHTML_row(
-      "title",
-      "",
-      this.data.titlesQueue
-    );
-
-    result += `</table`;
-
-    this.titlesQueue = result;
-  }
-
-  createRemove() {
-    let result = "";
-    let index = 0;
-
-    this.data.queue.forEach(() => {
-      result += `<div class="remove__container"> <btn class="remove__btn btn" id="${index}">Remove </btn></div>`;
-      index++;
-    });
-
-    this.removeQueue = result;
-  }
-
-  createPieQueue() {
-    let index = 0;
-    if (this.compareLength == 0) {
-      this.pieQueue = "";
-    } else {
-      this.pieQueue = "";
-      this.data.queue.forEach(() => {
-        this.pieQueue += this.HTMLControl.genPieChart(index);
-        index++;
-      });
-    }
-  }
-
-  updatePieQueue() {
-    let index = 0;
-    if (this.compareLength == 0) {
-      this.pieQueue = "";
-    } else {
-      this.data.queue.forEach((el) => {
-        this.data.nutrients.loadAll(el.foodNutrients);
-        this.newPieChart(index);
-        index++;
-      });
-    }
-  }
-
   clear() {
-    this.data.nutrients.clear();
-    this.compareTable = "";
-    this.titlesQueue = "";
-    this.pieQueue = "";
-    this.removeQueue = "";
-  }
-
-  newPieChart(index) {
-    const ctx = document.getElementById(`pie${index}`).getContext("2d");
-    const myChart = new Chart(ctx, {
-      type: "pie",
-      data: {
-        labels: ["Protein", "Fat", "Water", "Carbs"],
-        datasets: [
-          {
-            label: "Food",
-            data: [
-              this.data.nutrients.major.protein.weight,
-              this.data.nutrients.major.fat.weight,
-              this.data.nutrients.major.water.weight,
-              this.data.nutrients.major.carb.weight,
-            ],
-            backgroundColor: [
-              "rgba(253, 6, 6,0.8)",
-              "rgba(255,255,33,1)",
-              "rgba(33,33,235,0.5)",
-              "rgba(255, 255, 255,1)",
-            ],
-            borderColor: [
-              "rgba(253, 6, 6,1)",
-              "rgba(255,255,33,1)",
-              "rgba(33,33,235,1)",
-              "rgba(255, 255, 255,1)",
-            ],
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        plugins: {
-          title: {
-            display: false,
-            text: this.data.titlesQueue[index],
-            font: {
-              size: 18,
-            },
-          },
-          legend: {
-            display: false,
-          },
-        },
-      },
-    });
+    compareData.nutrients.clear();
   }
 }

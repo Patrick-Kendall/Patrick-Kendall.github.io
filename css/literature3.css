@@ -1,13 +1,5 @@
 /* general formatting */
 
-a {
-  color: #000;
-}
-
-.back-to-top {
-  padding-right: 30px;
-}
-
 /*  on-page anchors */
 .anch {
   position: absolute;
@@ -27,12 +19,11 @@ a {
   padding: 10px;
   padding-left: 50px;
   padding-top: 25px;
-  height: 500px;
+  padding-bottom: 100px;
   display: block;
   z-index: 0.95;
   margin: 20px;
   margin-top: 10px;
-  /* margin-bottom: 0; */
   background-color: white;
   box-shadow: -3px 0px 10px 0px #1c1c1c, 3px 0px 10px 0px #1c1c1c;
 }
@@ -47,18 +38,18 @@ a {
 
 .TOC-title {
   margin-top: 40px;
-  margin-bottom: 0;
+  margin-bottom: 10px;
   font-size: 14pt;
 }
 
 .TOC-list {
-  list-style-type: lower-alpha;
+  list-style-type: none;
   margin-top: 5px;
   margin-bottom: 0;
 }
 
 .TOC-item {
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   font-size: 14pt;
 }
 
@@ -72,8 +63,7 @@ a {
 /* review FORMATTING */
 /* ================================ */
 
-.review,
-.minor-review {
+.review {
   position: relative;
   padding: 30px;
   padding-bottom: 160px;
@@ -92,48 +82,40 @@ a {
 }
 
 .review h1,
-.minor-review h1 {
+h1 {
   padding: 0;
   margin: 0;
   font-size: 1.9rem;
   line-height: 1.5rem;
   margin-top: auto;
   margin-bottom: 6px;
-  padding-left: 11px;
   font-weight: lighter;
 }
 
-.author {
-  margin-top: -10px;
-  font-style: italic;
-  margin-left: 10px;
-}
-
-.first {
-  margin-top: 25px;
-  margin-top: 10px;
-  margin-bottom: 0;
-}
-
 .review h4,
-.minor-review h4 {
+h4 {
   margin-top: 10px;
   margin-bottom: 0;
 }
 
 .paragraph {
   margin: 0;
-  padding: 5px 10px;
+  padding: 5px 0px;
   display: flex;
+  font-size: 1.21em;
+  font-family: serif;
 }
 
-.first-paragraph {
+.quotation {
+  padding: 35px;
+  padding-top: 5px;
+  padding-bottom: 10px;
   margin: 0;
-  margin-bottom: 20px;
-  padding: 10px;
-  padding-bottom: 5px;
-  display: flex;
+  font-size: 1.21em;
+  font-family: serif;
 }
+
+/* political philosophy only */
 
 .premise-num {
   padding: 0;
@@ -154,25 +136,14 @@ a {
   margin: 0;
   margin-top: -8px;
   margin-bottom: 10px;
-  font-style: italic;
 }
 
-.quotation {
-  padding: 35px;
-  padding-top: 5px;
-  padding-bottom: 10px;
-  margin: 0;
-  font-style: italic;
-}
+/* Section - my take */
 
 .myTake-header {
-  position: relative;
-  justify-content: center;
-  background-color: yellow;
   margin-top: 17px;
-  border-radius: 5px;
-  padding: 8px;
   margin-bottom: 11px;
+  font-weight: 600;
 }
 
 .myTake-link {
@@ -188,6 +159,8 @@ a {
 .myTake-link a {
   text-decoration: none;
 }
+
+/* russian literature only */
 
 .discussion-text {
   padding: 0;
@@ -234,55 +207,6 @@ a {
   text-shadow: 2px 2px 5px 0 black;
 }
 
-/* table for influence ----------------------------------- PK 01JUL21 */
-table {
-  /* width: 100%; */
-  border: 1px solid black;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 40px;
-  border-collapse: collapse;
-}
-
-th {
-  background-color: gray;
-  border: 1px solid black;
-}
-
-td {
-  background-color: white;
-  border: 1px solid black;
-}
-
-.influence-heading {
-  height: 50px;
-  width: 140px;
-}
-
-.influence-text {
-  width: 330px;
-  text-align: center;
-}
-
-.aboutAuthor {
-  /* margin-top: 10px; */
-  /* border: 1px solid black; */
-  padding: 8px;
-  margin-top: 17px;
-  font-weight: 600;
-}
-.briefestSummary {
-  padding: 8px;
-  /* margin-bottom: 80px; */
-}
-.majorPoints-header {
-  /* margin-bottom: 40px; */
-  justify-content: center;
-  padding-left: 20px;
-  border-radius: 4px;
-  margin-bottom: 25px;
-}
-
 .majorPoints {
   margin-bottom: 40px;
 }
@@ -295,12 +219,7 @@ td {
   margin-bottom: 80px;
 }
 
-.review-author {
-  height: 30px;
-}
-
 .review-rating {
-  /* height: 20px; */
   color: white;
   padding: 12px;
   margin: 18px -5px;
@@ -312,49 +231,10 @@ td {
   font-weight: 600;
 }
 
-/* Official briefest summary header; other class is used for Hume entry */
-.briefestSummaryHeader {
-  margin-top: 17px;
-  padding: 8px;
+.sectionHeader {
+  margin-top: 6px;
+  padding: 8px 0px;
   font-weight: 600;
-}
-
-.briefSummaryHeader {
-  margin-top: 17px;
-  padding: 8px;
-  font-weight: 600;
-}
-
-.majorPointsHeader {
-  margin-top: 17px;
-  padding: 8px;
-  font-weight: 600;
-}
-
-.additionalPointsHeader {
-  margin-top: 17px;
-  padding: 8px;
-  font-weight: 600;
-}
-
-.summary-heading {
-  font-weight: bold;
-  text-align: center;
-  justify-content: center;
-  width: 100%;
-  height: 35px;
-}
-
-.summary-text {
-  text-align: center;
-  justify-content: center;
-  width: 100%;
-  height: 60px;
-}
-
-.premise {
-  display: flex;
-  padding-left: 8px;
 }
 
 /* ================================ */
@@ -387,8 +267,7 @@ td {
   }
 
   /* modifying margins */
-  .review,
-  .minor-review {
+  .review {
     margin-left: 0;
     margin-right: 0;
     padding: 0;
@@ -397,7 +276,7 @@ td {
   }
 
   .review h4,
-  .minor-review h4 {
+  h4 {
     padding-left: 10px;
   }
 
@@ -409,25 +288,9 @@ td {
     padding-left: 20px;
     text-shadow: 1px 1px 2px black;
     opacity: 82%;
-    border-radius: 10px;
+    border-radius: 5px;
     min-width: 85%;
     font-weight: 600;
-  }
-
-  .aboutAuthor {
-    /* margin-top: 10px; */
-    /* border: 1px solid black; */
-    margin-bottom: 6px;
-    padding: 0;
-  }
-
-  .briefestSummary {
-    padding: 0px;
-    margin-bottom: 80px;
-  }
-
-  .review-rating {
-    border-radius: 5px;
   }
 
   .TOC {
