@@ -25,7 +25,9 @@
   margin: 20px;
   margin-top: 10px;
   background-color: white;
-  box-shadow: -3px 0px 10px 0px #1c1c1c, 3px 0px 10px 0px #1c1c1c;
+  box-shadow:
+    -3px 0px 10px 0px #1c1c1c,
+    3px 0px 10px 0px #1c1c1c;
 }
 
 .TOC-heading {
@@ -70,7 +72,9 @@
   background-color: white;
   margin: 20px;
   margin-top: 0;
-  box-shadow: -3px 0px 10px 0px #1c1c1c, 3px 0px 10px 0px #1c1c1c;
+  box-shadow:
+    -3px 0px 10px 0px #1c1c1c,
+    3px 0px 10px 0px #1c1c1c;
 }
 
 .review-header {
@@ -144,6 +148,7 @@ h4 {
   margin-top: 17px;
   margin-bottom: 11px;
   font-weight: 600;
+  scroll-margin-top: 50px;
 }
 
 .myTake-link {
