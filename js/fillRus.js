@@ -250,7 +250,7 @@ function createStringFromJson(data) {
   // review header
   html += `<div class="review"><a name="${data.title.replace(
     /\s/g,
-    ""
+    "",
   )}" class="anch"></a>
         <div class="review-header">
           <h1>${data.title}</h1>
@@ -296,10 +296,10 @@ function createStringFromJson(data) {
   });
 
   // Add My Take
-  html += `<div class="myTake-header"><p>My Take </p><a name="myTake${data.title.replace(
+  html += `<div class="myTake-header" id="myTake${data.title.replace(
     /\s/g,
-    ""
-  )}" class="take-anch"></a></div>`;
+    "",
+  )}"><p>My Take </p> <class="take-anch"></a></div>`;
 
   data.myTake.paragraphs.forEach((paragraph) => {
     html += dealWithParagraphOrQuote(paragraph);
